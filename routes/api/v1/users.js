@@ -23,4 +23,28 @@ router.post('/api/v1/users', (req, res) => {
   })
 });
 
+router.post('/api/v1/sessions', (req, res) => {
+  User.findOne({where: {email: req.body.email}})
+  .then(user => {
+    if (!user) {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(500).send(JSON.stringify({error: 'Email or Password Incorrect'}));
+    } else {
+      bcrypt.compare(req.body.password, user.password, (err, successful) => {
+        if (successful) {
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).send(JSON.stringify({api_key: user.api_key}));
+        } else {
+          res.setHeader('Content-Type', 'application/json');
+          res.status(500).send(JSON.stringify({error: 'Email or Password Incorrect'}));
+        }
+      });
+    }
+  })
+  .catch(error => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(500).send(JSON.stringify({error}));
+  });
+});
+
 module.exports = router;
