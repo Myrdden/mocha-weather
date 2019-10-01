@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "pguser",
+    "password": null,
+    "database": "mocha-weather-dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "pguser",
+    "password": null,
+    "database": "mocha-weather-test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "pguser",
+    "password": null,
+    "database": "mocha-weather-production",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}
