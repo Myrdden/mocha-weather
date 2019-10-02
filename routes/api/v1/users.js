@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var User = require('../../../models').User;
-var crypto = require('crypto');
-var bcrypt = require('bcrypt');
+let express = require('express');
+let router = express.Router();
+let User = require('../../../models').User;
+let crypto = require('crypto');
+let bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.post('/api/v1/users', (req, res) => {

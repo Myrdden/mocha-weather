@@ -8,10 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      city: {
-        type: Sequelize.STRING
-      },
-      state: {
+      location: {
         type: Sequelize.STRING
       },
       createdAt: {
