@@ -21,6 +21,23 @@ router.post('/api/v1/favorites', (req, res) => {
   });
 });
 
+router.delete('/api/v1/favorites', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  User.findOne({where: {api_key: req.body.api_key}})
+  .then(user => {
+    Location.destroy({where: {location: req.body.location, UserId: user.id}})
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(error => {
+      res.status(500).send(JSON.stringify({error}));
+    });
+  })
+  .catch(() => {
+    res.status(403).send(JSON.stringify({error: 'Invalid API Key'}));
+  });
+});
+
 router.get('/api/v1/favorites', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   User.findOne({where: {api_key: req.body.api_key}})
